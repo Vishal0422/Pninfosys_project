@@ -11,7 +11,7 @@ app.use(session({
     cookie: { secure: false }
   }));
 app.use(flash())
-const port = process.env || 3000
+const port = process.env.PORT || 3000
 var bodyParser = require('body-parser')//body parser used to take the data
 app.use(bodyParser.urlencoded({ extended: false }))//used to get data in url and convert to json format
 //router link
