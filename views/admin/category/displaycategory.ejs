@@ -1,0 +1,60 @@
+<%- include('../../header.ejs') %>
+<section class="dashboard-wrap mtb-40">
+    <div class="container">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dash-left">
+                        <ul>
+                            <li class="active"><a href="/admin/dashboard" class="active">Dashboard</a></li>
+                            <li><a href="/admin/createblog">Create Blogs</a></li>
+                            <li><a href="/admin/blogdisplay">Blogs display</a></li>
+                            <li><a href="/admin/createcategory">Craete Category</a></li>
+                            <li><a href="/admin/displaycategory">Display Category</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>   
+                </div>
+                <div class="col-md-9">
+                    <div class="dash-right">
+                        <div class="dash-header">
+                            <div class="dash-title">
+                                <h1 style="font-family: 'Mochiy Pop One', sans-serif;" class="mb-5">Display Category</h1>
+                            </div>
+                            <div class="dash-nav">
+                                <a href="/admin/createcategory" class="btn btn-success">Add Category</a>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>No.</th>
+                                <th>Category Name</th>
+                                <th>Action</th>
+                            </tr>
+                            <td><% var i=1 %></td>
+                            <% data.forEach((item)=>{ %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td><%= item.catname %></td>
+                                
+                                <td>
+                                    <a href="" class="btn btn-success btn-sm">View</a>
+                                    <a href="/admin/editcategory/<%= item._id %>" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="/admin/deletecategory/<%= item._id %>" class="btn btn-danger btn-sm">Delete</a>
+                                   
+                                </td>
+                                
+                            </tr>
+                            <% })%>
+                            
+                            
+                        </table>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include('../../footer.ejs') %>
+

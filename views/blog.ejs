@@ -1,0 +1,19 @@
+<%- include('./header.ejs') %>
+<section class="blog-list mtb-40">
+    <div class="container">
+      <h1 style="font-family: 'Mochiy Pop One', sans-serif;">Blogs</h1>
+      <div class="row">
+        <% data.forEach((item)=>{ %>
+        <div class="col-md-4 mb-5">
+          <div class="blog-box">
+            <img src="/upload/<%= item.image %>" height="200px" width="250px" alt="blog1" />
+            <h3><%= item.title %></h3>
+            <p><%= item.createdAt.toLocaleDateString() %></p>
+            <p><%= item.description.slice(0, 120) %> </p>
+            <a href="detail.html" class="btn btn-danger">Read more...</a>
+          </div>
+        </div>
+        <% })%>
+    </div>
+</section>
+<%- include('./footer.ejs') %>
