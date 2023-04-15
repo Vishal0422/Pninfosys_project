@@ -1,5 +1,6 @@
 const UserModel = require('../../models/User')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 class UserController{
@@ -55,10 +56,15 @@ class UserController{
         try{
             const{email,password}=req.body
             const User = await UserModel.findOne({email:email})
-            console.log(User)
+            //console.log(User)
             if(User!=null){
                 const isMatch = await bcrypt.compare(password,User.password)
                 if((User.email == email)&&isMatch){
+                    //generate token
+                    
+                    const token = jwt.sign({ userid: User._id}, 'vishalsikarwaritmgwalior');
+                    //console.log(token)
+                    res.cookie('jwt',token)
                     res.redirect('/admin/dashboard')
                 }else{
                     req.flash('error','email and password does not match')
@@ -76,8 +82,11 @@ class UserController{
 
     static Logout = async(req,res)=>{
         try{
+            res.clearCookie('jwt')
             res.redirect('/')
+            
         }catch(err){
+            
             console.log(err)
         }
     }

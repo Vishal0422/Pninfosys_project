@@ -9,6 +9,7 @@ const ContactController = require('../controllers/admin/ContactController')
 const router = express.Router()
 const aboutmiddleware = require('../middleware/aboutmiddleware')
 const image_middleware = require('../middleware/image_middleware')//about middleware
+const auth = require('../middleware/auth')
 const UserController = require('../controllers/user/UserController')
 
 
@@ -26,12 +27,12 @@ router.get('/blog',BlockController.Blog)
 router.get('/login',BlockController.login)
 router.get('/detail/:id',BlockController.detail)
 // admin controller
-router.get('/admin/dashboard',AdminController.Dashboard)
+router.get('/admin/dashboard',auth,AdminController.Dashboard)
 //admin blogController
-router.get('/admin/createblog',BlogController.CreateBlog)
+router.get('/admin/createblog',auth,BlogController.CreateBlog)
 router.post('/bloginsert',image_middleware,BlogController.bloginsert)
-router.get('/admin/blogdisplay',BlogController.DisplayBlog)
-router.get('/admin/viewblog/:id',BlogController.Viewblog)
+router.get('/admin/blogdisplay',auth,BlogController.DisplayBlog)
+router.get('/admin/viewblog/:id',auth,BlogController.Viewblog)
 router.get('/admin/editblog/:id',BlogController.Editblog)
 router.post('/admin/blogupdate/:id',image_middleware,BlogController.Updateblog)
 router.get('/admin/deleteblog/:id',BlogController.Deleteblog)
